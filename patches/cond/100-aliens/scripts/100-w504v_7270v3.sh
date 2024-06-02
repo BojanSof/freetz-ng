@@ -37,6 +37,9 @@ cp -f "${FILESYSTEM_TK_DIR}/lib/modules/2.6.32.21/kernel/drivers/char/led_module
 # patch the module version string
 modsed "s/2\.6\.32\.21/2.6.32.41/g" "${FILESYSTEM_MOD_DIR}/lib/modules/2.6.32.41/kernel/drivers/char/led_module.ko"
 
+echo2 "clear E40-dsl (prevent DSL init)"
+cat /dev/null > ${FILESYSTEM_MOD_DIR}/etc/init.d/E40-dsl
+
 # patch install script to accept firmware for w504v
 echo2 "applying install patch"
 modsed "s/ur8_16MB_xilinx_4eth_2ab_isdn_nt_te_pots_wlan_usb_host_dect_plus_55266/ur8_16MB_xilinx_4eth_2ab_isdn_pots_wlan_usb_host_dect_504avm_07585/g" "${FIRMWARE_MOD_DIR}/var/install"
